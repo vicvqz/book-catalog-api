@@ -4,10 +4,21 @@ const app = express();
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.json({
-        message: "Catalogo de libros API funcionando"
-    });
+const books = [
+    {
+        id: 1,
+        title: "The Nightingale",
+        author: "Kristin Hannah"
+    },
+    {
+        id: 2,
+        title: "The Most Fun We Ever Had",
+        author: "Claire Lombardo"
+    }
+];
+
+app.get("/books", (req, res) => {
+    res.json(books);
 });
 
 if (require.main === module) {
