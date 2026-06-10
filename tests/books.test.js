@@ -27,7 +27,7 @@ describe("Book Catalog API", () => {
     expect(response.statusCode).toBe(201);
 
     expect(response.body.title)
-        .toBe("Domain Driven Design");
+        .toBe("The Midnight Train");
 
 });
 
