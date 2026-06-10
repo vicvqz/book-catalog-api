@@ -15,7 +15,7 @@ describe("Book Catalog API", () => {
 
     });
 
-    test("POST /books debe crear un libro", async () => {
+    test("POST /books debe agregar un libro", async () => {
 
     const response = await request(app)
         .post("/books")
