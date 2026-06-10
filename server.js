@@ -8,10 +8,14 @@ app.use(express.static("public"));
 
 const booksRouter = require("./api/books");
 
+const path = require("path");
+
 app.get("/", (req, res) => {
-    res.json({
-        message: "Catalogo de libros API funcionando"
-    });
+
+    res.sendFile(
+        path.join(__dirname, "public", "index.html")
+    );
+
 });
 
 app.use("/books", booksRouter);
