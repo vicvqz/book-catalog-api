@@ -8,7 +8,7 @@ app.use(express.json());
 // Servir archivos estáticos de la carpeta public
 app.use(express.static(path.join(__dirname, "public")));
 
-const booksRouter = require("./api/books");
+const booksRouter = require("./routes/books");
 
 // Página principal
 app.get("/", (req, res) => {
