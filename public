@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Libros</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>📚 Catálogo de Libros</h1>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Buscar libro..."
+            >
+
+            <button onclick="searchBooks()">
+                Buscar
+            </button>
+
+        </div>
+
+        <div id="booksContainer"></div>
+
+    </div>
+
+    <script>
+
+        let allBooks = [];
+
+        async function loadBooks() {
+
+            const response = await fetch("/books");
+
+            const books = await response.json();
+
+            allBooks = books;
+
+            renderBooks(books);
+
+        }
+
+        function renderBooks(books) {
+
+            const container =
+                document.getElementById("booksContainer");
+
+            container.innerHTML = "";
+
+            books.forEach(book => {
+
+                container.innerHTML += `
+                    <div class="book-card">
+                        <h3>${book.title}</h3>
+                        <p>${book.author}</p>
+                    </div>
+                `;
+
+            });
+
+        }
+
+        function searchBooks() {
+
+            const text =
+                document
+                .getElementById("searchInput")
+                .value
+                .toLowerCase();
+
+            const filtered = allBooks.filter(book =>
+                book.title.toLowerCase().includes(text)
+            );
+
+            renderBooks(filtered);
+
+        }
+
+        loadBooks();
+
+    </script>
+
+</body>
+</html>
