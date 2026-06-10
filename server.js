@@ -1,23 +1,23 @@
 const express = require("express");
+const path = require("path");
 
 const app = express();
 
 app.use(express.json());
 
-app.use(express.static("public"));
+// Servir archivos estáticos de la carpeta public
+app.use(express.static(path.join(__dirname, "public")));
 
 const booksRouter = require("./api/books");
 
-const path = require("path");
-
+// Página principal
 app.get("/", (req, res) => {
-
     res.sendFile(
         path.join(__dirname, "public", "index.html")
     );
-
 });
 
+// API de libros
 app.use("/books", booksRouter);
 
 if (require.main === module) {
