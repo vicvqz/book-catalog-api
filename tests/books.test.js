@@ -15,4 +15,20 @@ describe("Book Catalog API", () => {
 
     });
 
+    test("POST /books debe crear un libro", async () => {
+
+    const response = await request(app)
+        .post("/books")
+        .send({
+            title: "The Midnight Train",
+            author: "Matt Haig"
+        });
+
+    expect(response.statusCode).toBe(201);
+
+    expect(response.body.title)
+        .toBe("Domain Driven Design");
+
+});
+
 });
