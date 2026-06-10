@@ -30,4 +30,24 @@ router.post("/", (req, res) => {
 
 });
 
+router.delete("/:id", (req, res) => {
+
+    const id = parseInt(req.params.id);
+
+    const index = books.findIndex(book => book.id === id);
+
+    if (index === -1) {
+        return res.status(404).json({
+            error: "Libro no encontrado"
+        });
+    }
+
+    books.splice(index, 1);
+
+    res.json({
+        message: "Libro eliminado"
+    });
+
+});
+
 module.exports = router;
