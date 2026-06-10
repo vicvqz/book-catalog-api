@@ -31,4 +31,14 @@ describe("Book Catalog API", () => {
 
 });
 
+test("POST /books sin datos debe devolver error 400", async () => {
+
+    const response = await request(app)
+        .post("/books")
+        .send({});
+
+    expect(response.statusCode).toBe(400);
+
+});
+
 });
